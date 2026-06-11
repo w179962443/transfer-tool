@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Transfer Tool</string>
+    <string name="app_title">文件分类搬运工具</string>
+    <string name="source_directory_label">源目录</string>
+    <string name="target_directory_label">目标目录</string>
+    <string name="pick_source_button">选择源目录</string>
+    <string name="pick_target_button">选择目标目录</string>
+    <string name="start_button">开始任务</string>
+    <string name="progress_label">已完成移动的文件数量</string>
+    <string name="progress_count">%1$d</string>
+    <string name="progress_count_initial">0</string>
+    <string name="status_label">当前状态</string>
+    <string name="status_idle">等待开始</string>
+    <string name="status_scanning">正在扫描文件…</string>
+    <string name="status_moving">正在移动：%1$s（%2$d/%3$d）</string>
+    <string name="status_completed">任务完成，成功移动 %1$d 个文件，失败 %2$d 个。</string>
+    <string name="status_cancelled">任务已取消。</string>
+    <string name="status_failed">任务失败：%1$s</string>
+    <string name="not_selected">未选择</string>
+    <string name="error_invalid_directory">请选择可访问的源目录和目标目录。</string>
+    <string name="error_target_inside_source">目标目录不能与源目录相同，也不能位于源目录内部。</string>
+    <string name="error_unknown">未知错误</string>
+    <string name="error_create_target">无法创建目标文件：%1$s</string>
+    <string name="error_delete_source">无法删除源文件：%1$s</string>
+</resources>
