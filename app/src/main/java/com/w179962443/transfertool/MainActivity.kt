@@ -1,6 +1,6 @@
 package com.w179962443.transfertool
 
-import android.content.ContentResolver
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.DocumentsContract
@@ -274,15 +274,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun copyContents(sourceFile: DocumentFile, targetFile: DocumentFile) {
-        val inputStream = contentResolver.openInputStream(sourceFile.uri)
-            ?: throw FileNotFoundException(sourceFile.uri.toString())
-        val outputStream = contentResolver.openOutputStream(targetFile.uri, "w")
-            ?: throw FileNotFoundException(targetFile.uri.toString())
+        try {
+            val inputStream = contentResolver.openInputStream(sourceFile.uri)
+                ?: throw FileNotFoundException(sourceFile.uri.toString())
+            val outputStream = contentResolver.openOutputStream(targetFile.uri, "w")
+                ?: throw FileNotFoundException(targetFile.uri.toString())
 
-        inputStream.use { input ->
-            outputStream.use { output ->
-                input.copyTo(output)
+            inputStream.use { input ->
+                outputStream.use { output ->
+                    input.copyTo(output)
+                }
             }
+        } catch (exception: Exception) {
+            targetFile.delete()
+            throw exception
         }
     }
 
@@ -323,8 +328,6 @@ class MainActivity : AppCompatActivity() {
 
     private object IntentFlags {
         const val readWriteFlags: Int =
-            ContentResolver.SCHEME_CONTENT.length and 0 or
-                android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION or
-                android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+            Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
     }
 }
